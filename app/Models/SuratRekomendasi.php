@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Database\Factories\SuratRekomendasiFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class SuratRekomendasi extends Model
 {
@@ -87,6 +89,16 @@ class SuratRekomendasi extends Model
     public function departemen(): BelongsTo
     {
         return $this->belongsTo(Departemen::class);
+    }
+
+    // Unduh surat sebagai PDF (dipakai panel Filament & halaman publik)
+    public function downloadPdf(): StreamedResponse
+    {
+        $pdf = Pdf::loadView('pdf.surat-rekomendasi', ['record' => $this])->setPaper('a4');
+
+        return response()->streamDownload(function () use ($pdf): void {
+            echo $pdf->output();
+        }, $this->pdfFileName(), ['Content-Type' => 'application/pdf']);
     }
 
     // Nama file PDF aman (nomor surat biasanya mengandung "/")

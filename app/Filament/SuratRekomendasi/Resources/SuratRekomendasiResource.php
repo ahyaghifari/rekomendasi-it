@@ -6,7 +6,6 @@ use App\Filament\SuratRekomendasi\Resources\SuratRekomendasiResource\Pages;
 use App\Models\Departemen;
 use App\Models\Petugas;
 use App\Models\SuratRekomendasi;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
@@ -254,7 +253,7 @@ class SuratRekomendasiResource extends Resource
                     ->label('Download PDF')
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('success')
-                    ->action(fn (SuratRekomendasi $record): StreamedResponse => self::downloadPdf($record)),
+                    ->action(fn (SuratRekomendasi $record): StreamedResponse => $record->downloadPdf()),
 
                 EditAction::make()
                     ->label('Ubah'),
@@ -266,15 +265,6 @@ class SuratRekomendasiResource extends Resource
                     ->modalSubmitActionLabel('Ya, Hapus')
                     ->modalCancelActionLabel('Batal'),
             ]);
-    }
-
-    public static function downloadPdf(SuratRekomendasi $surat): StreamedResponse
-    {
-        $pdf = Pdf::loadView('pdf.surat-rekomendasi', ['record' => $surat])->setPaper('a4');
-
-        return response()->streamDownload(function () use ($pdf): void {
-            echo $pdf->output();
-        }, $surat->pdfFileName(), ['Content-Type' => 'application/pdf']);
     }
 
     // -------------------------------------------------------------------------

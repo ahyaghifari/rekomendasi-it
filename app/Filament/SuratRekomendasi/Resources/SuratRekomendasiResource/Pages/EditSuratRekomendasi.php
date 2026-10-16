@@ -31,7 +31,7 @@ class EditSuratRekomendasi extends EditRecord
                 ->label('Download PDF')
                 ->icon('heroicon-o-arrow-down-tray')
                 ->color('success')
-                ->action(fn () => SuratRekomendasiResource::downloadPdf($this->getRecord())),
+                ->action(fn () => $this->getRecord()->downloadPdf()),
 
             DeleteAction::make()
                 ->label('Hapus'),
