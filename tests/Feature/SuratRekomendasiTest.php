@@ -56,14 +56,14 @@ class SuratRekomendasiTest extends TestCase
         Livewire::test(Login::class)
             ->fillForm(['email' => $user->email, 'password' => 'rahasia123'])
             ->call('authenticate')
-            ->assertRedirect('/sistem-rekomendasi/surat');
+            ->assertRedirect('/surat-rekomendasi/surat');
     }
 
     public function test_guest_is_redirected_to_panel_login(): void
     {
         auth()->logout();
 
-        $this->get('/sistem-rekomendasi/surat')->assertRedirect('/sistem-rekomendasi/login');
+        $this->get('/surat-rekomendasi/surat')->assertRedirect('/surat-rekomendasi/login');
     }
 
     public function test_create_form_fills_jabatan_from_master_and_saves_snapshot(): void

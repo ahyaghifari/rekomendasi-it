@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Halaman publik Surat Rekomendasi IT: hanya daftar, buat baru, dan unduh PDF
- * (ubah/hapus tetap lewat panel Filament /sistem-rekomendasi/surat).
+ * (ubah/hapus tetap lewat panel Filament /surat-rekomendasi/surat).
  */
 class SuratRekomendasiController extends Controller
 {

@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Setelah login Filament, arahkan ke homeUrl panel bila diset. Panel Surat Rekomendasi
-        // berbagi prefix /sistem-rekomendasi dengan halaman publik, jadi root panel bukan halaman admin.
+        // berbagi prefix /surat-rekomendasi dengan halaman publik, jadi root panel bukan halaman admin.
         $this->app->bind(LoginResponse::class, fn () => new class implements LoginResponse
         {
             public function toResponse($request): RedirectResponse|Redirector

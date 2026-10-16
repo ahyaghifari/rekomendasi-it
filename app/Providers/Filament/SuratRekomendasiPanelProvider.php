@@ -23,8 +23,8 @@ class SuratRekomendasiPanelProvider extends PanelProvider
     {
         return $panel
             ->id('surat_rekomendasi')
-            ->path('sistem-rekomendasi')
-            // Root /sistem-rekomendasi milik halaman publik; beranda admin = tabel surat
+            ->path('surat-rekomendasi')
+            // Root /surat-rekomendasi milik halaman publik; beranda admin = tabel surat
             ->homeUrl(fn (): string => SuratRekomendasiResource::getUrl('index'))
             ->login()                        // Login memakai tabel users yang sama dengan panel admin
             ->brandName('Surat Rekomendasi IT')
