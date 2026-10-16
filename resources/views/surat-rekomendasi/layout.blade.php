@@ -9,7 +9,7 @@
 <body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
     <header class="border-b border-slate-200 bg-white">
         <div class="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-            <img src="{{ asset('images/logo-syifa.jpeg') }}" alt="Logo Syifa Global Group" class="h-9 w-auto">
+            <img src="{{ asset('images/logo-syifa.jpeg') }}" alt="Logo Syifa Global Group" class="h-11 w-auto sm:h-12">
             <div class="leading-tight">
                 <div class="text-sm font-bold text-slate-900">Surat Rekomendasi IT</div>
                 <div class="text-xs text-slate-500">Syifa Global Group</div>

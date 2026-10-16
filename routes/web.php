@@ -26,10 +26,10 @@ Route::middleware('auth')->group(function () {
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Surat Rekomendasi IT (publik): daftar, buat baru, dan unduh PDF.
-//  Ubah/hapus surat hanya lewat panel Filament /surat_rekomendasi.
+//  Ubah/hapus surat hanya lewat panel Filament /sistem-rekomendasi/surat.
 // ─────────────────────────────────────────────────────────────────────────────
-Route::get('/surat-rekomendasi', [SuratRekomendasiController::class, 'index'])->name('surat.index');
-Route::get('/surat-rekomendasi/buat', [SuratRekomendasiController::class, 'create'])->name('surat.create');
-Route::post('/surat-rekomendasi', [SuratRekomendasiController::class, 'store'])->middleware('throttle:10,1')->name('surat.store');
-Route::get('/surat-rekomendasi/{surat}/pdf', [SuratRekomendasiController::class, 'downloadPdf'])->name('surat.pdf');
+Route::get('/sistem-rekomendasi', [SuratRekomendasiController::class, 'index'])->name('surat.index');
+Route::get('/sistem-rekomendasi/buat', [SuratRekomendasiController::class, 'create'])->name('surat.create');
+Route::post('/sistem-rekomendasi', [SuratRekomendasiController::class, 'store'])->middleware('throttle:10,1')->name('surat.store');
+Route::get('/sistem-rekomendasi/{surat}/pdf', [SuratRekomendasiController::class, 'downloadPdf'])->name('surat.pdf');
 Route::get('/api/perusahaan/{perusahaan}/departemen', [SuratRekomendasiController::class, 'getDepartemenByPerusahaan'])->name('surat.departemen');

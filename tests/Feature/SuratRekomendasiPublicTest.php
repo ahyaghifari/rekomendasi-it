@@ -43,6 +43,14 @@ class SuratRekomendasiPublicTest extends TestCase
             ->assertDontSee('/edit');
     }
 
+    public function test_public_and_panel_urls_share_sistem_rekomendasi_prefix(): void
+    {
+        $this->get('/sistem-rekomendasi')->assertOk()->assertSee('Daftar Surat Rekomendasi');
+        $this->get('/sistem-rekomendasi/buat')->assertOk();
+        $this->get('/sistem-rekomendasi/login')->assertOk();
+        $this->get('/sistem-rekomendasi/surat')->assertRedirect('/sistem-rekomendasi/login');
+    }
+
     public function test_guest_can_open_create_form_without_signatory_fields(): void
     {
         $this->get(route('surat.create'))

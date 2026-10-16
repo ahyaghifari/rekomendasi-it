@@ -12,6 +12,7 @@ use App\Models\Petugas;
 use App\Models\SuratRekomendasi;
 use App\Models\User;
 use Filament\Actions\Testing\TestAction;
+use Filament\Auth\Pages\Login;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
@@ -47,11 +48,22 @@ class SuratRekomendasiTest extends TestCase
         ];
     }
 
+    public function test_panel_login_redirects_to_admin_table_not_public_page(): void
+    {
+        auth()->logout();
+        $user = User::factory()->create(['password' => 'rahasia123']);
+
+        Livewire::test(Login::class)
+            ->fillForm(['email' => $user->email, 'password' => 'rahasia123'])
+            ->call('authenticate')
+            ->assertRedirect('/sistem-rekomendasi/surat');
+    }
+
     public function test_guest_is_redirected_to_panel_login(): void
     {
         auth()->logout();
 
-        $this->get('/surat_rekomendasi/surat-rekomendasi')->assertRedirect('/surat_rekomendasi/login');
+        $this->get('/sistem-rekomendasi/surat')->assertRedirect('/sistem-rekomendasi/login');
     }
 
     public function test_create_form_fills_jabatan_from_master_and_saves_snapshot(): void

@@ -14,6 +14,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Panel;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
@@ -37,7 +38,12 @@ class SuratRekomendasiResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Daftar Surat Rekomendasi';
 
-    protected static ?string $slug = 'surat-rekomendasi';
+    protected static ?string $slug = 'surat';
+
+    public static function getSlug(?Panel $panel = null): string
+    {
+        return 'surat';
+    }
 
     // -------------------------------------------------------------------------
     // Form (judul & sub-judul ada di halaman Create/Edit).
